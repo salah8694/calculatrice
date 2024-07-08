@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/salah8694/calculatrice.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker build -t calculatrice .'
+                sh 'docker run -d -p 3000:3000 calculatrice'
+            }
+        }
+    }
+}
