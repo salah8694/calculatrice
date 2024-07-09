@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Calculator.css';
 
 const Calculator = () => {
   const [input, setInput] = useState('');
 
-  const handleButtonClick = (value) => {
+  const handleButtonClick = (value:any) => {
     if (value === '=') {
       calculateResult();
     } else if (value === 'C') {
