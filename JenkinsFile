@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/salah8694/calculatrice.git'
+                git branch: 'main', url: 'https://github.com/salah8694/calculatrice.git'
             }
         }
 
@@ -29,7 +29,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker build -t calculatrice .'
-                sh 'docker run -d -p 3000:3000 calculatrice'
+                sh 'docker run -d -p 5173:5173 calculatrice'
             }
         }
     }
